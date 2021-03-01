@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: test
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+server:
+  servlet:
+    context-path: /abtest-consumer

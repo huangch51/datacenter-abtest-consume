@@ -1,0 +1,54 @@
+server:
+  port: 8099
+# 数据库访问配置
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.9.239:3306/test?uallowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8
+          username: root
+          password: 123456
+    redis:
+      ad:
+        topic:
+          ip: 192.168.9.239
+          port: 6379
+          passwd:
+          database: 0
+    clickhouse:
+      username: default
+      password:
+      ck0: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck1: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck2: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck3: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck4: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck5: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck6: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck7: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck8: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck9: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck10: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+      ck11: jdbc:clickhouse://192.168.9.226:8123/default,jdbc:clickhouse://192.168.9.226:8123/default
+
+#kafka客户端
+abtest:
+  kafka:
+    bootstrap-servers: 192.168.9.103:9092
+    key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    group-id: datacent_abtest_test
+    auto-commit-interval-ms: 1000
+    session-timeout-ms: 30000
+    heartbeat-interval-ms: 10000
+    #每次消费最大条数
+    max-poll-records: 500
+    client-id:
+      client: datacent_abtest_cli_test
+    consumer-id:
+      client: datacent_abtest_consumer_test
+    topic:
+      client: abtest_allot_data

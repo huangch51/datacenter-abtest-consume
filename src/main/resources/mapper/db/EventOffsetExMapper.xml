@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qw.datacenter.ad.consume.dao.mapper.EventOffsetExMapper">
+    <insert id="saveOffset" parameterType="java.util.List">
+        insert into abtest_event_offset(`consumer_id`,`topic`, `partition_id`, `offset_id`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.consumerId,jdbcType=VARCHAR},#{item.topic,jdbcType=VARCHAR}, #{item.partitionId,jdbcType=INTEGER},
+            #{item.offsetId,jdbcType=BIGINT})
+        </foreach>
+        ON DUPLICATE KEY UPDATE `offset_id`=VALUES(offset_id);
+    </insert>
+</mapper>
